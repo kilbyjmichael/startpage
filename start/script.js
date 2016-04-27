@@ -6,6 +6,6 @@ Mousetrap.bind('f m', function(e) { window.location.replace('https://gmail.com/'
 
 function searchForm(){
     var query = document.searchForm.q.value;
-    location='http://www.google.com/search?q=' + encodeURIComponent(query);
+    location='https://www.google.com/search?q=' + encodeURIComponent(query);
     return(location);
 };
