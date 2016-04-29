@@ -7,15 +7,17 @@ I never really minded the default tab pages on Chrome or Firefox, but after seei
 #### Aliases
 It uses Mousetrap to bind some regular key combos I use, usually the first few letters of the autofill in the search bar.
 
+All of the aliases are followed by a tab so that they also work in the search bar.
+
 | alias| page               |
 |------|--------------------|
 | reg  | reggienet          |
 | fac  | facebook           |
 | git  | github             |
 | red  | reddit             |
-| fm   | fastmail           |
+| fa   | fastmail           |
 | gm   | gmail              |
-| mm   | facebook messenger |
+| mes  | facebook messenger |
 | abtv | animebytes.tv      |
 
 #### Search
