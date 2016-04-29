@@ -26,6 +26,14 @@ main {
   }
 }
 
+.img-bg {
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    background-image: url('bg.png');
+}
+
 h1 {
   color: #b59c56;
  font-family: 'Montserrat', sans-serif;
