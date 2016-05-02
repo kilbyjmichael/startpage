@@ -8,35 +8,49 @@ Mousetrap.bind('g i t tab', function(e) { window.location.replace('https://githu
 Mousetrap.bind('r e d tab', function(e) { window.location.replace('https://reddit.com/')});
 Mousetrap.bind('m a l tab', function(e) { window.location.replace('https://myanimelist.net/animelist/sageinventor')});
 
+var searchEngine = {
+'engines':[
+    {code:"g",link:"https://www.google.com/search?q="},
+    {code:"ddg",link:"https://duckduckgo.com/?q="},
+    {code:"mal",link:"http://myanimelist.net/search/all?q="},
+    {code:"gmail",link:"https://mail.google.com/mail/u/0/#search/"},
+    {code:"git",link:"https://github.com/search?utf8=%E2%9C%93&q="},
+]};
 
-function searchForm(){
-    var query = document.searchForm.q.value.split(":");
-    if(query.length == 2) { // This means there's a :
-        if(query[0] == 'g') {
-            location = 'https://www.google.com/search?q=' + encodeURIComponent(query[1]);
-            return(location);
+function searchForm() {
+    var query = document.searchForm.q.value;
+    var found = query.match(/\.[a-z]{3,5}/); //solve me
+    if (found) {
+        location = 'http://' + query;
+        return (location);
         }
-        if(query[0] == 'ddg') {
-            location = 'https://duckduckgo.com/?q=' + encodeURIComponent(query[1]);
-            return(location);
-        }
-        if(query[0] == 'mal') {
-            location = 'http://myanimelist.net/search/all?q=' + encodeURIComponent(query[1]);
-            return(location);
-        }
-	    if(query[0] == 'gmail') {
-		    location = 'https://mail.google.com/mail/u/0/#search/' + encodeURIComponent(query[1]);
-		    return(location);
-	    }
-	    if(query[0] == 'git') {
-		    location = 'https://github.com/search?utf8=%E2%9C%93&q=' + encodeURIComponent(query[1]);
-		    return(location);
-	    }
-    }
     else {
-        location = 'https://www.google.com/search?q=' + encodeURIComponent(query);
-        return(location);
-    }
+        query = query.split(":");
+        if(query.length == 2) { // This means there's a :
+            for(var i = 0; i < searchEngine.engines.length; i++) {
+                if(query[0] == searchEngine.engines[i].code) {
+                    location = searchEngine.engines[i].link + encodeURIComponent(query[1]);
+                    return(location);
+                };
+            }
+        }
+        else if (query.length > 2) { // This means there's multiple :
+            actQuery = query.pop();
+            document.title = actQuery; //sets title of tab group to query
+            for(var j = 0; j < query.length;j++) {
+                for(var i = 0; i < searchEngine.engines.length; i++) {
+                    if(query[j] == searchEngine.engines[i].code) {
+                        var newWin = searchEngine.engines[i].link + encodeURIComponent(actQuery);
+                        window.open(newWin, '_blank');
+                    }
+                };
+            };
+        }//ends more than 2 else if
+        else {
+            location = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+            return(location);
+        }
+    }   
 };
 
 Mousetrap.prototype.stopCallback = function () {

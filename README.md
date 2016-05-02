@@ -23,7 +23,7 @@ All of the aliases are followed by a tab so that they also work in the search ba
 
 #### Search
 
-It also has a search bar that I am developing to be more complete. Currently it defaults to a google search, however you can add something before a colon to change the search engine, such as ```d:query``` for duck duck go, or ```a:query``` for myanimelist.net.
+It also has a search bar that I am developing to be more complete. Currently it defaults to a google search, however you can add something before a colon to change the search engine, such as ```ddg:query``` for duck duck go, or ```mal:query``` for myanimelist.net. You can also combine search engines as such: ```g:ddg:query``` and the search will open up multiple tabs.
 
 | pre: | search             |
 |------|--------------------|
