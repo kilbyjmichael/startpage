@@ -7,24 +7,24 @@ html, body, h1, ul, li {
 
 body {
   background: url(bg.png) right bottom no-repeat,
-              url(bg2.png) 0% 0% no-repeat, #282d37;
+              url(bg3.png) top left no-repeat, #282d37;
   height: 100vh;
   width: 100vw;
 }
 
 @media only screen and (max-height: 600px) {
     body {
-      background: url(bg.png) right bottom no-repeat, #282d37;
-      background-size: 220px 200px;
+      background: url(bg.png) right bottom/220px 200px no-repeat,
+                  url(bg3.png) top left/100px 120px no-repeat, #282d37;
       height: 100vh;
       width: 100vw;
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1100px) {
     body {
-      background: url(bg.png) right bottom no-repeat, #282d37;
-      background-size: 320px 300px;
+      background: url(bg.png) right bottom/320px 300px no-repeat,
+                  url(bg3.png) top left/100px 120px no-repeat, #282d37;
       height: 100vh;
       width: 100vw;
     }
@@ -41,6 +41,7 @@ main {
 @media only screen and (max-height: 600px) {
   main {
     left: 40%;
+    top: 60%;
     transform: translate(-40%, -60%);
   }
 }
@@ -55,17 +56,17 @@ h1 {
 /*
  * SEARCH FORM
 */
-.searchForm{
+.searchForm {
     width:410px;
     margin-bottom: 10px;
     margin-top: 5px;
 }
-.searchForm i{
+.searchForm i {
     font-size:1.6rem;
     cursor:pointer;
     margin-right:5px;
 }
-.searchForm input{
+.searchForm input {
     font-size:1.1rem;
     padding:.2rem;
     border:none;
