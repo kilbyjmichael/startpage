@@ -15,11 +15,26 @@ var searchEngine = {
     {code:"mal",link:"http://myanimelist.net/search/all?q="},
     {code:"gmail",link:"https://mail.google.com/mail/u/0/#search/"},
     {code:"git",link:"https://github.com/search?utf8=%E2%9C%93&q="},
+    {code:"nyaa",link:"https://www.nyaa.se/?page=search&term="},
+    {code:"abtv",link:"https://animebytes.tv/torrents.php?searchstr="},
+    {code:"baka",link:"https://bakabt.me/browse.php?q="},
+    {code:"r",link:"https://www.reddit.com/search?q="},
+    {code:"fb",link:"https://www.facebook.com/search/top/?q="},
+    {code:"tco",link:"https://twitter.com/search?q="},
+    {code:"hn",link:"https://hn.algolia.com/?query="},
+    {code:"wiki",link:"https://en.wikipedia.org/w/index.php?search="},
 ]};
+
+var searchGroups = {
+    'anime' :['mal','abtv','baka','nyaa'],
+    'social':['fb','r','tco','hn'],
+    'ref'   :['wiki','g'],
+    's'     :['g','ddg']
+};
 
 function searchForm() {
     var query = document.searchForm.q.value;
-    var found = query.match(/\.[a-z]{3,5}/); //solve me
+    var found = query.match(/\.[a-z]{2,5}/); //solve me
     if (found) {
         location = 'http://' + query;
         return (location);
@@ -27,10 +42,23 @@ function searchForm() {
     else {
         query = query.split(":");
         if(query.length == 2) { // This means there's a :
-            for(var i = 0; i < searchEngine.engines.length; i++) {
-                if(query[0] == searchEngine.engines[i].code) {
-                    location = searchEngine.engines[i].link + encodeURIComponent(query[1]);
-                    return(location);
+            if(searchGroups[query[0]]) {
+            document.title = query[0] +':' + query[1]; //sets title of tab group to query
+                for(var i = 0; i < searchEngine.engines.length; i++) {
+                 for(var j = 0; j < searchGroups.anime.length; j++) {
+                    if(searchGroups[query[0]][j] == searchEngine.engines[i].code) {
+                        var newWin = searchEngine.engines[i].link + encodeURIComponent(query[1]);
+                        window.open(newWin, '_blank');
+                    }
+                 };
+                }; 
+            }
+             else {
+                for(var i = 0; i < searchEngine.engines.length; i++) {
+                    if(query[0] == searchEngine.engines[i].code) {
+                        location = searchEngine.engines[i].link + encodeURIComponent(query[1]);
+                        return(location);
+                    }
                 };
             }
         }
