@@ -6,7 +6,8 @@ html, body, h1, ul, li {
 }
 
 body {
-  background: url(bg.png) right bottom no-repeat, #282d37;
+  background: url(bg.png) right bottom no-repeat,
+              url(bg2.png) 0% 0% no-repeat, #282d37;
   height: 100vh;
   width: 100vw;
 }
